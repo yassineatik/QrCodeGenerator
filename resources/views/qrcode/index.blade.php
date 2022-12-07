@@ -1,35 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>How to Generate QR Code in Laravel 9</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <H1>Welcome to our QR Code Generator</H1>
 
-    <div class="container mt-4">
-
-        <div class="card">
-            <div class="card-header">
-                <h2>Simple QR Code</h2>
-            </div>
-            <div class="card-body">
-                {!! QrCode::size(300)->generate($content['content']) !!}
-            </div>
-        </div>
-        {{-- 
-        <div class="card">
-            <div class="card-header">
-                <h2>Color QR Code</h2>
-            </div>
-            <div class="card-body">
-                {!! QrCode::size(300)->backgroundColor(255, 90, 0)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-9') !!}
-            </div>
-        </div> --}}
-
+        <label for="" class="form-label">In this input , type the content of your QR Code , either it's a link ,
+            message or a
+            text</label>
+        <form action="{{ Route('generate') }}" method="POST">
+            <textarea class="form-control mt-4 mb-4 d-inline-block" placeholder="Leave a comment here" id="floatingTextarea"
+                name="content"></textarea>
+            @csrf
+            <input type="submit" value="Generate QR code" class="btn btn-success">
+        </form>
     </div>
 </body>
 
